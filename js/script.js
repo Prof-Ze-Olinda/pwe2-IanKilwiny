@@ -3,19 +3,59 @@
 const botao = document.getElementById("startBtn");
 
 botao.addEventListener("click", () => {
-    // TODO: peça ao usuário seu nome usando prompt()
 
-    // TODO: peça o ano de nascimento e armazene em anoNascimento
+    let calcularIdade = (dia, mes, ano) => {
+        let anoAtual = new Date().getFullYear()
+        let mesAtual = new Date().getMonth() + 1
+        let diaAtual = new Date().getDate()
 
-    // Use uma variável para o ano atual
+        let diaNasc = parseInt(dia)
+        let mesNasc = parseInt(mes)
+        let anoNasc = parseInt(ano)
 
-    // TODO: converta o ano de nascimento para número (parseInt)
+        let idade = 0
 
-    // TODO: exiba com alert() uma frase: "Olá, NOME! Você tem X anos."
+        idade = anoAtual - anoNasc;
 
-    // TODO: use confirm() para perguntar se a idade está correta
+        if (mesNasc > mesAtual || (mesAtual == mesNasc && diaAtual < diaNasc)) {
+            idade -= 1
+        }
 
-    // Exiba no console a escolha do usuário (console.log ou console.warn)
+        return idade
+    }
 
-    // Melhore o programa adicionando outros recursos
+
+    let nome = prompt("Informe o seu nome")
+
+    let dataNascimento = prompt("Informe seu ano de nascimento (dia/mes/ano)")
+
+
+    let [dia, mes, ano] = dataNascimento.split("/")
+
+    let anoAtual = new Date().getFullYear()
+
+    if (ano >= anoAtual ) {
+        console.warn("A data do nascimento está errado!")
+        alert("A data do nascimento está errado!")
+        return
+
+    }
+    
+    let idade = calcularIdade(dia, mes, ano)
+
+    alert(`Olá! Meu nome é ${nome} e tenho ${idade} anos!!!`)
+
+
+    let confirmacao = confirm("Suas informações estão corretas?")
+
+    if (confirmacao) {
+        alert("Obrigado por participar!!")
+    }else{
+        alert("Você cancelou a confirmação? Houve algum problema?")
+
+        console.warn("Confirm cancelado pelo usuário")
+    }
+
+
+
 });
